@@ -142,3 +142,15 @@ export function koText(text) {
   for (const key of keys) if (key.length > 5 && text.includes(key)) text = text.split(key).join(translations[key]);
   return text;
 }
+
+// Result overlay is created by the original level module; translate only visible text nodes.
+if (typeof document !== 'undefined') {
+  const translateResult = () => {
+    for (const el of document.querySelectorAll('.go-title, .go-stats, .go-highscore')) {
+      for (const node of el.childNodes) if (node.nodeType === 3 && node.textContent !== koText(node.textContent)) node.textContent = koText(node.textContent);
+      const prompt = el.parentElement?.lastElementChild;
+      if (prompt?.textContent === 'CLICK TO RESTART') prompt.textContent = koText(prompt.textContent);
+    }
+  };
+  new MutationObserver(translateResult).observe(document.body, {childList:true, subtree:true});
+}
