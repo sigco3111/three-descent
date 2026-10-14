@@ -631,9 +631,9 @@ function drawFullScreenHUD( ctx ) {
 
 	// Key indicators (bottom-left, above shield/energy)
 	let keyY = COCKPIT_H - 30;
-	if ( _keysBlue === true ) { ctx.fillStyle = '#4444ff'; ctx.fillText( 'BLUE', 4, keyY ); keyY -= 10; }
-	if ( _keysGold === true ) { ctx.fillStyle = '#ffff00'; ctx.fillText( 'GOLD', 4, keyY ); keyY -= 10; }
-	if ( _keysRed === true ) { ctx.fillStyle = '#ff0000'; ctx.fillText( 'RED', 4, keyY ); }
+	if ( _keysBlue === true ) { ctx.fillStyle = '#4444ff'; ctx.fillText( '파랑', 4, keyY ); keyY -= 10; }
+	if ( _keysGold === true ) { ctx.fillStyle = '#ffff00'; ctx.fillText( '금색', 4, keyY ); keyY -= 10; }
+	if ( _keysRed === true ) { ctx.fillStyle = '#ff0000'; ctx.fillText( '빨강', 4, keyY ); }
 
 	// Hostage progress for the current level.
 	const levelHostages = hostage_get_in_level();
@@ -718,13 +718,13 @@ function drawStatusBarHUD( ctx ) {
 	ctx.textBaseline = 'top';
 	ctx.textAlign = 'left';
 	ctx.fillStyle = '#00cc00';
-	ctx.fillText( 'SH ' + Math.max( 0, Math.floor( _shields ) ), 52, barY + 7 );
-	ctx.fillText( 'EN ' + Math.max( 0, Math.floor( _energy ) ), 52, barY + 15 );
+	ctx.fillText( '방어막 ' + Math.max( 0, Math.floor( _shields ) ), 52, barY + 7 );
+	ctx.fillText( '에너지 ' + Math.max( 0, Math.floor( _energy ) ), 52, barY + 15 );
 
 	const levelHostages = hostage_get_in_level();
 	if ( levelHostages > 0 ) {
 
-		ctx.fillText( 'HO ' + hostage_get_level_saved() + '/' + levelHostages, 52, barY + 23 );
+		ctx.fillText( '인질 ' + hostage_get_level_saved() + '/' + levelHostages, 52, barY + 23 );
 
 	}
 
@@ -900,7 +900,7 @@ function drawWeaponInfo( ctx, weaponType ) {
 
 		if ( _primaryWeapon === 0 ) {
 
-			name += '\nLVL: ' + ( _laserLevel + 1 );
+			name += '\n단계: ' + ( _laserLevel + 1 );
 
 			// Show "QUAD" below level when player has quad lasers
 			if ( _quadLasers === true ) {
