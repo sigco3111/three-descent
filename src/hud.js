@@ -1,3 +1,4 @@
+import { koText } from './ko.js';
 // Ported from: descent-master/MAIN/HUD.C
 // HUD message display system
 
@@ -17,6 +18,7 @@ const STATUSBAR_MESSAGE_Y = COCKPIT_H - 49;	// Rendered just above the status ba
 export function hud_show_message( msg ) {
 
 	if ( typeof msg !== 'string' || msg === '' ) return;
+	msg = koText(msg);
 
 	const last = _messages.length > 0 ? _messages[ _messages.length - 1 ] : null;
 	if ( last !== null && last === msg ) {
