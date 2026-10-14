@@ -294,6 +294,7 @@ function get_char_width( font, c, c2 ) {
 // Ported from: gr_get_string_size() in FONT.C lines 923-960
 export function gr_get_string_size( font, text ) {
   text = koText(text);
+  if (/[가-힣]/.test(text)) text = text.replace(/\bYES\b/g, '예').replace(/\bNO\b/g, '아니오').replace(/\bON\b/g, '켜짐').replace(/\bOFF\b/g, '꺼짐').replace(/\bOPEN\b/g, '열기');
   if (/[가-힣]/.test(text)) {
     const ctx = koreanContext(font);
     const lines = text.split('\n');
@@ -344,6 +345,7 @@ export function gr_get_string_size( font, text ) {
 //              gr_internal_color_string() (color fonts) in FONT.C
 export function gr_string( imageData, font, x, y, text, gamePalette, fgColorIndex ) {
   text = koText(text);
+  if (/[가-힣]/.test(text)) text = text.replace(/\bYES\b/g, '예').replace(/\bNO\b/g, '아니오').replace(/\bON\b/g, '켜짐').replace(/\bOFF\b/g, '꺼짐').replace(/\bOPEN\b/g, '열기');
   if (/[가-힣]/.test(text)) {
     const ctx = koreanContext(font);
     ctx.canvas.width = imageData.width;
