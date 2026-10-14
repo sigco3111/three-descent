@@ -1,3 +1,4 @@
+import { showKoreanBriefing } from './ko-story.js';
 // Ported from: descent-master/MAIN/TITLES.C
 // Logo sequence, briefing screens with typewriter text
 
@@ -1151,6 +1152,9 @@ async function display_briefing_text( bsp, message ) {
 	const overlay = ensureTextOverlay();
 	overlay.innerHTML = '';
 	overlay.style.pointerEvents = 'auto';
+
+	const koreanResult = await showKoreanBriefing(bsp, overlay, () => _skipBriefing);
+	if (koreanResult !== null) return koreanResult;
 
 	// Text container fills the overlay (which is already sized to match the 320x200 area)
 	const textContainer = document.createElement( 'div' );
