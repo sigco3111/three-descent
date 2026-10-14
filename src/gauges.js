@@ -430,7 +430,7 @@ export function gauges_draw( dt, endlevelActive = false ) {
 		ctx.fillStyle = '#00ff00';
 		ctx.font = 'bold 10px monospace';
 		ctx.textAlign = 'center';
-		ctx.fillText( 'REAR VIEW', COCKPIT_W / 2, COCKPIT_H - 75 );
+		ctx.fillText( '후방 보기', COCKPIT_W / 2, COCKPIT_H - 75 );
 		ctx.textAlign = 'left';
 
 	} else if ( _cockpitMode === CM_FULL_COCKPIT ) {
@@ -626,8 +626,8 @@ function drawFullScreenHUD( ctx ) {
 	// Ported from: hud_show_shield()/hud_show_energy() in GAUGES.C:904, 1038
 	ctx.fillStyle = '#00ff00';
 	ctx.textAlign = 'left';
-	ctx.fillText( 'SHIELD: ' + shield, 4, COCKPIT_H - 18 );
-	ctx.fillText( 'ENERGY: ' + energy, 4, COCKPIT_H - 8 );
+	ctx.fillText( '방어막: ' + shield, 4, COCKPIT_H - 18 );
+	ctx.fillText( '에너지: ' + energy, 4, COCKPIT_H - 8 );
 
 	// Key indicators (bottom-left, above shield/energy)
 	let keyY = COCKPIT_H - 30;
@@ -640,7 +640,7 @@ function drawFullScreenHUD( ctx ) {
 	if ( levelHostages > 0 ) {
 
 		ctx.fillStyle = '#00cc00';
-		ctx.fillText( 'HOSTAGES: ' + hostage_get_level_saved() + '/' + levelHostages, 4, keyY - 10 );
+		ctx.fillText( '인질: ' + hostage_get_level_saved() + '/' + levelHostages, 4, keyY - 10 );
 
 	}
 
@@ -652,7 +652,7 @@ function drawFullScreenHUD( ctx ) {
 	let primaryExtra = '';
 	if ( _primaryWeapon === 0 ) {
 
-		if ( _quadLasers === true ) primaryName = 'QUAD ' + primaryName;
+		if ( _quadLasers === true ) primaryName = '4연장 ' + primaryName;
 		primaryExtra = ' ' + ( _laserLevel + 1 );
 
 	} else if ( _primaryWeapon === 1 ) {
@@ -1045,7 +1045,7 @@ function drawScoreLives( ctx ) {
 	ctx.textAlign = 'right';
 	ctx.textBaseline = 'top';
 	ctx.fillStyle = '#00cc00';
-	ctx.fillText( 'SCORE: ' + _score, COCKPIT_W - 4, SCORE_Y );
+	ctx.fillText( '점수: ' + _score, COCKPIT_W - 4, SCORE_Y );
 
 	// Lives (top left) — show spare lives (total - 1)
 	// Ported from: draw_player_lives() in GAUGES.C — displays (lives-1) spare ships
@@ -1087,7 +1087,7 @@ function drawCloakInvulnIndicators( ctx ) {
 		if ( show === true ) {
 
 			ctx.fillStyle = '#00cc00';
-			ctx.fillText( 'CLOAKED', 2, COCKPIT_H - 48 );
+			ctx.fillText( '은폐 중', 2, COCKPIT_H - 48 );
 
 		}
 
@@ -1103,7 +1103,7 @@ function drawCloakInvulnIndicators( ctx ) {
 		if ( show === true ) {
 
 			ctx.fillStyle = '#ffcc00';
-			ctx.fillText( 'INVULNERABLE', 2, COCKPIT_H - 56 );
+			ctx.fillText( '무적', 2, COCKPIT_H - 56 );
 
 		}
 
@@ -1149,7 +1149,7 @@ function drawPlayerDeadMessage( ctx ) {
 	ctx.textAlign = 'center';
 	ctx.textBaseline = 'top';
 	ctx.fillStyle = '#00cc00';
-	ctx.fillText( 'PRESS ANY KEY TO CONTINUE', COCKPIT_W / 2, COCKPIT_H - 75 );
+	ctx.fillText( '키를 눌러 계속', COCKPIT_W / 2, COCKPIT_H - 75 );
 	ctx.restore();
 
 }
