@@ -664,6 +664,6 @@ let koreanCanvas;
 function koreanContext(font) {
   if (!koreanCanvas) koreanCanvas = document.createElement('canvas');
   const ctx = koreanCanvas.getContext('2d', { willReadFrequently: true });
-  ctx.font = `bold ${Math.max(7,font.ft_h)}px "Malgun Gothic", "Apple SD Gothic Neo", "Noto Sans KR", sans-serif`;
+  ctx.font = `bold ${Math.max(4,font.ft_h)}px "Malgun Gothic", "Apple SD Gothic Neo", "Noto Sans KR", sans-serif`;
   return ctx;
 }
