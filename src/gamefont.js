@@ -49,6 +49,7 @@ export function gamefont_init( hogFile, gamePalette ) {
 		if ( Gamefonts[ i ] !== null ) {
 
 			const f = Gamefonts[ i ];
+			f.koColor = i === 2 ? '#ffff88' : i === 3 ? '#ddaaaa' : '#aacc88';
 			console.log( 'GAMEFONT: Loaded ' + Gamefont_filenames[ i ] +
 				' (' + f.ft_w + 'x' + f.ft_h +
 				', chars ' + f.ft_minchar + '-' + f.ft_maxchar +
