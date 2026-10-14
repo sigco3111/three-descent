@@ -1,3 +1,4 @@
+import { koText } from './ko.js';
 // Ported from: descent-master/MAIN/INFERNO.C
 // Main entry point — loads game data files, initializes subsystems, starts game
 
@@ -29,7 +30,7 @@ let palette = null;
 
 function setStatus( msg ) {
 
-	status.textContent = msg;
+	status.textContent = koText(msg);
 	console.log( msg );
 
 }
