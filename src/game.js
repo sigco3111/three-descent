@@ -72,7 +72,7 @@ let _pauseCanvas = null;
 let _pauseCtx = null;
 let _pauseWrapper = null;
 let _pauseSelectedIndex = 0;
-let _pauseStatusText = null;	// temporary status message ("GAME SAVED!", etc.)
+let _pauseStatusText = null;	// temporary status message ("저장 완료!", etc.)
 let _pauseStatusTimer = 0;
 let _pauseState = 'menu';	// 'menu', 'settings', or 'bindings'
 let _settingsSelectedIndex = 0;
@@ -85,11 +85,11 @@ const PAUSE_W = 320;
 const PAUSE_H = 200;
 
 const PAUSE_MENU_ITEMS = [
-	{ label: 'RESUME', id: 'resume' },
-	{ label: 'SAVE GAME', id: 'save' },
-	{ label: 'LOAD GAME', id: 'load' },
-	{ label: 'SETTINGS', id: 'settings' },
-	{ label: 'QUIT TO MENU', id: 'quit' },
+	{ label: '계속', id: 'resume' },
+	{ label: '게임 저장', id: 'save' },
+	{ label: '게임 불러오기', id: 'load' },
+	{ label: '설정', id: 'settings' },
+	{ label: '메뉴로 나가기', id: 'quit' },
 ];
 
 let _pauseItemYPositions = []; // { y, h } for each item in 320x200 space
@@ -177,7 +177,7 @@ function drawCruiseSpeed() {
 		ctx.textAlign = 'center';
 		ctx.textBaseline = 'top';
 		ctx.fillStyle = '#00cc00';
-		ctx.fillText( 'CRUISE ' + Math.floor( Cruise_speed ) + '%', 160, 14 );
+		ctx.fillText( '자동 전진 ' + Math.floor( Cruise_speed ) + '%', 160, 14 );
 		ctx.restore();
 		gauges_mark_dirty();		// ensure gauges redraws next frame (clears our text area)
 		gauges_needs_upload();		// ensure texture upload includes our text
@@ -1793,10 +1793,10 @@ function renderPauseMenu() {
 
 	if ( normalFont === null || currentFont === null ) return;
 
-	// Draw "PAUSED" title using subtitle font (or normal font fallback)
+	// Draw "일시정지" title using subtitle font (or normal font fallback)
 	const titleFont = subtitleFont !== null ? subtitleFont : normalFont;
 	const titleY = 60;
-	gr_string( imageData, titleFont, 0x8000, titleY, 'PAUSED', _gamePalette );
+	gr_string( imageData, titleFont, 0x8000, titleY, '일시정지', _gamePalette );
 
 	// Draw menu items below the title
 	const itemHeight = normalFont.ft_h + 4;
@@ -1809,15 +1809,15 @@ function renderPauseMenu() {
 		// Override label with status text for save/load feedback
 		if ( _pauseStatusText !== null ) {
 
-			if ( PAUSE_MENU_ITEMS[ i ].id === 'save' && _pauseStatusText === 'GAME SAVED!' ) {
+			if ( PAUSE_MENU_ITEMS[ i ].id === 'save' && _pauseStatusText === '저장 완료!' ) {
 
 				label = _pauseStatusText;
 
-			} else if ( PAUSE_MENU_ITEMS[ i ].id === 'save' && _pauseStatusText === 'SAVE FAILED' ) {
+			} else if ( PAUSE_MENU_ITEMS[ i ].id === 'save' && _pauseStatusText === '저장 실패' ) {
 
 				label = _pauseStatusText;
 
-			} else if ( PAUSE_MENU_ITEMS[ i ].id === 'load' && _pauseStatusText === 'NO SAVE FOUND' ) {
+			} else if ( PAUSE_MENU_ITEMS[ i ].id === 'load' && _pauseStatusText === '저장 파일 없음' ) {
 
 				label = _pauseStatusText;
 
@@ -1842,13 +1842,13 @@ function renderPauseMenu() {
 // --- Pause settings sub-screen ---
 
 const PAUSE_SETTINGS_ITEMS = [
-	{ label: 'SOUND VOLUME', id: 'digi_volume' },
-	{ label: 'MUSIC VOLUME', id: 'music_volume' },
-	{ label: 'REVERSE STEREO', id: 'reverse_stereo' },
-	{ label: 'SOUND CHANNELS', id: 'sound_channels' },
-	{ label: 'INVERT MOUSE', id: 'invert_mouse' },
-	{ label: 'TEXTURE FILTERING', id: 'texture_filtering' },
-	{ label: 'CONFIGURE KEYS', id: 'configure_keys' },
+	{ label: '효과음 크기', id: 'digi_volume' },
+	{ label: '음악 크기', id: 'music_volume' },
+	{ label: '스테레오 반전', id: 'reverse_stereo' },
+	{ label: '사운드 채널', id: 'sound_channels' },
+	{ label: '마우스 상하 반전', id: 'invert_mouse' },
+	{ label: '텍스처 필터', id: 'texture_filtering' },
+	{ label: '키 설정', id: 'configure_keys' },
 ];
 
 const PAUSE_BINDING_ITEMS = controls_get_bindable_actions();
@@ -2019,7 +2019,7 @@ function renderPauseSettings() {
 
 	const titleFont = subtitleFont !== null ? subtitleFont : normalFont;
 	const titleY = 60;
-	gr_string( imageData, titleFont, 0x8000, titleY, 'SETTINGS', _gamePalette );
+	gr_string( imageData, titleFont, 0x8000, titleY, '설정', _gamePalette );
 
 	const itemHeight = normalFont.ft_h + 4;
 	const itemsStartY = titleY + titleFont.ft_h + 16;
@@ -2041,7 +2041,7 @@ function renderPauseSettings() {
 	if ( smallFont !== null ) {
 
 		const hintY = itemsStartY + PAUSE_SETTINGS_ITEMS.length * itemHeight + 10;
-		gr_string( imageData, smallFont, 0x8000, hintY, 'LEFT/RIGHT ADJUST  ENTER CHANGE  ESC BACK', _gamePalette );
+		gr_string( imageData, smallFont, 0x8000, hintY, '좌우 조절 · Enter 변경 · Esc 뒤로', _gamePalette );
 
 	}
 
@@ -2081,7 +2081,7 @@ function renderPauseBindings() {
 
 	const titleFont = subtitleFont !== null ? subtitleFont : normalFont;
 	const titleY = 42;
-	gr_string( imageData, titleFont, 0x8000, titleY, 'KEY BINDINGS', _gamePalette );
+	gr_string( imageData, titleFont, 0x8000, titleY, '키 배치', _gamePalette );
 
 	const itemHeight = normalFont.ft_h + 2;
 	const itemsStartY = titleY + titleFont.ft_h + 10;
@@ -2106,11 +2106,11 @@ function renderPauseBindings() {
 
 		if ( _bindingCaptureAction !== null ) {
 
-			gr_string( imageData, smallFont, 0x8000, hintY, 'PRESS A KEY  ESC TO CANCEL', _gamePalette );
+			gr_string( imageData, smallFont, 0x8000, hintY, '키를 누르세요 · Esc 취소', _gamePalette );
 
 		} else {
 
-			gr_string( imageData, smallFont, 0x8000, hintY, 'ENTER TO REBIND  ESC TO BACK', _gamePalette );
+			gr_string( imageData, smallFont, 0x8000, hintY, 'Enter 키 변경 · Esc 뒤로', _gamePalette );
 
 		}
 
@@ -2292,7 +2292,7 @@ function onPauseMenuSelect( idx ) {
 		if ( _onSaveGame !== null ) {
 
 			const result = _onSaveGame();
-			_pauseStatusText = result === true ? 'GAME SAVED!' : 'SAVE FAILED';
+			_pauseStatusText = result === true ? '저장 완료!' : '저장 실패';
 			renderPauseMenu();
 			clearTimeout( _pauseStatusTimer );
 			_pauseStatusTimer = setTimeout( function () {
@@ -2313,8 +2313,8 @@ function onPauseMenuSelect( idx ) {
 			if ( result !== true ) {
 
 				_pauseStatusText = transitionSuspended === true
-					? 'LOAD FAILED - QUIT TO MENU'
-					: 'NO SAVE FOUND';
+					? '불러오기 실패 - 메뉴로 나가세요'
+					: '저장 파일 없음';
 				renderPauseMenu();
 				if ( transitionSuspended !== true ) {
 
@@ -2494,4 +2494,4 @@ function toggleAutomap() {
 
 	}
 
-}
+		}
