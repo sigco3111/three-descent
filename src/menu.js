@@ -124,7 +124,7 @@ export async function do_main_menu( hogFile, defaultDifficulty, gamePalette ) {
 				const line1 = 'WASD:MOVE  MOUSE:LOOK  Q/E:ROLL';
 				const line2 = 'LEFT CLICK:FIRE  RIGHT CLICK:MISSILE  TAB:MAP';
 				gr_string( imageData, smallFont, 0x8000, controlsY, line1, gamePalette );
-				gr_string( imageData, smallFont, 0x8000, controlsY + smallFont.ft_h + 1, line2, gamePalette );
+				gr_string( imageData, smallFont, 0x8000, controlsY + Math.max(smallFont.ft_h + 5, 11), line2, gamePalette );
 
 			}
 
