@@ -1,3 +1,4 @@
+import { koText } from './ko.js';
 // Ported from: descent-master/2D/FONT.C
 // FNT file parser and bitmap font text renderer
 
@@ -292,6 +293,13 @@ function get_char_width( font, c, c2 ) {
 // Measure string dimensions
 // Ported from: gr_get_string_size() in FONT.C lines 923-960
 export function gr_get_string_size( font, text ) {
+  text = koText(text);
+  if (/[가-힣]/.test(text)) {
+    const ctx = koreanContext(font);
+    const lines = text.split('\n');
+    return { width: Math.ceil(Math.max(...lines.map(line => ctx.measureText(line).width))), height: lines.length * font.ft_h, average_width: font.ft_w };
+  }
+
 
 	let stringWidth = 0;
 	let stringHeight = font.ft_h;
@@ -335,6 +343,24 @@ export function gr_get_string_size( font, text ) {
 // Ported from: gr_internal_string0m() (monochrome transparent) and
 //              gr_internal_color_string() (color fonts) in FONT.C
 export function gr_string( imageData, font, x, y, text, gamePalette, fgColorIndex ) {
+  text = koText(text);
+  if (/[가-힣]/.test(text)) {
+    const ctx = koreanContext(font);
+    ctx.canvas.width = imageData.width;
+    ctx.canvas.height = imageData.height;
+    ctx.putImageData(imageData, 0, 0);
+    koreanContext(font);
+    ctx.textBaseline = 'top';
+    ctx.fillStyle = fgColorIndex !== undefined && gamePalette ? `rgb(${gamePalette[fgColorIndex*3]},${gamePalette[fgColorIndex*3+1]},${gamePalette[fgColorIndex*3+2]})` : font.koColor || '#d9f0b0';
+    for (const line of text.split('\n')) {
+      const width = ctx.measureText(line).width;
+      ctx.fillText(line, x === 0x8000 ? (imageData.width-width)/2 : x, y, imageData.width-4);
+      y += font.ft_h;
+    }
+    imageData.data.set(ctx.getImageData(0,0,imageData.width,imageData.height).data);
+    return;
+  }
+
 
 	const pixels = imageData.data;
 	const canvasW = imageData.width;
@@ -630,4 +656,12 @@ function _gr_color_string( pixels, canvasW, canvasH, font, x, y, text, gamePalet
 
 	}
 
+}
+
+let koreanCanvas;
+function koreanContext(font) {
+  if (!koreanCanvas) koreanCanvas = document.createElement('canvas');
+  const ctx = koreanCanvas.getContext('2d', { willReadFrequently: true });
+  ctx.font = `bold ${Math.max(7,font.ft_h)}px "Malgun Gothic", "Apple SD Gothic Neo", "Noto Sans KR", sans-serif`;
+  return ctx;
 }
