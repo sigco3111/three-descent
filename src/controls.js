@@ -24,22 +24,22 @@ let secondaryFireButtonDown = false;
 let _onKeyAction = null;
 
 const ACTION_LABELS = Object.freeze( {
-	thrust_forward: 'THRUST FORWARD',
-	thrust_backward: 'THRUST BACKWARD',
-	thrust_left: 'STRAFE LEFT',
-	thrust_right: 'STRAFE RIGHT',
-	thrust_up: 'THRUST UP',
-	thrust_down: 'THRUST DOWN',
-	roll_left: 'ROLL LEFT',
-	roll_right: 'ROLL RIGHT',
-	cruise_faster: 'CRUISE FASTER',
-	cruise_slower: 'CRUISE SLOWER',
-	fire_flare: 'FIRE FLARE',
-	toggle_automap: 'TOGGLE AUTOMAP',
-	toggle_cockpit: 'TOGGLE COCKPIT',
-	reset_cruise: 'RESET CRUISE',
-	toggle_rear_view: 'TOGGLE REAR VIEW',
-	pause_game: 'PAUSE MENU',
+	thrust_forward: '앞으로 이동',
+	thrust_backward: '뒤로 이동',
+	thrust_left: '왼쪽 이동',
+	thrust_right: '오른쪽 이동',
+	thrust_up: '위로 이동',
+	thrust_down: '아래로 이동',
+	roll_left: '왼쪽 회전',
+	roll_right: '오른쪽 회전',
+	cruise_faster: '자동 전진 가속',
+	cruise_slower: '자동 전진 감속',
+	fire_flare: '조명탄 발사',
+	toggle_automap: '자동 지도',
+	toggle_cockpit: '조종석 전환',
+	reset_cruise: '자동 전진 해제',
+	toggle_rear_view: '후방 보기',
+	pause_game: '일시정지 메뉴',
 } );
 
 const _bindableActions = [];
