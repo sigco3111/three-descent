@@ -84,8 +84,8 @@ const weapon_window_left = [
 ];
 
 // Weapon names (from WEAPON.C / LASER.H)
-const PRIMARY_NAMES = [ 'LASER', 'VULCAN', 'SPREADFIRE', 'PLASMA', 'FUSION' ];
-const SECONDARY_NAMES = [ 'CONCUSSION\nMISSILE', 'HOMING\nMISSILE', 'PROXIMITY\nBOMB', 'SMART\nMISSILE', 'MEGA\nMISSILE' ];
+const PRIMARY_NAMES = [ '레이저', '벌컨', '스프레드', '플라스마', '퓨전' ];
+const SECONDARY_NAMES = [ '충격\n미사일', '유도\n미사일', '근접\n폭탄', '스마트\n미사일', '메가\n미사일' ];
 
 // --- Canvas state ---
 
