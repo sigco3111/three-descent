@@ -41,8 +41,8 @@ export const Primary_ammo_max = [ 0, VULCAN_AMMO_MAX, 0, 0, 0 ];
 export const Secondary_ammo_max = [ 20, 10, 10, 5, 5 ];
 
 // Weapon name tables (ported from WEAPON.C)
-export const WEAPON_NAMES = [ 'Laser', 'Vulcan Cannon', 'Spreadfire Cannon', 'Plasma Cannon', 'Fusion Cannon' ];
-export const SECONDARY_NAMES = [ 'Concussion Missile', 'Homing Missile', 'Proximity Bomb', 'Smart Missile', 'Mega Missile' ];
+export const WEAPON_NAMES = [ '레이저', '벌컨포', '스프레드파이어', '플라스마포', '퓨전포' ];
+export const SECONDARY_NAMES = [ '충격 미사일', '유도 미사일', '근접 폭탄', '스마트 미사일', '메가 미사일' ];
 
 // WeaponInfo class — mirrors weapon_info struct in WEAPON.H
 export class WeaponInfo {
