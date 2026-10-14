@@ -1,28 +1,90 @@
-# three-descent
+# 디센트 (three-descent) 한국어판
 
-A port of Descent to Three.js.
+고전 6자유도 우주선 슈팅 게임 **Descent**를 Three.js로 옮긴 [mrdoob/three-descent](https://github.com/mrdoob/three-descent)의 한국어 포크입니다. 광산 안을 전후·좌우·상하로 비행하며 로봇과 싸우고, 인질을 구출하고, 원자로를 파괴한 뒤 탈출합니다.
 
-### Play
+## 한국어화 범위
 
-https://mrdoob.github.io/three-descent/
+- 메인 메뉴, 난이도 선택, 설정, 저장·불러오기, 일시정지와 키 배치
+- 로딩·오류 안내, 점수표·레벨 보너스·게임 종료 화면
+- HUD 상태 메시지와 코드로 표시하는 방어막·에너지·인질·점수·무기 이름
+- 타이틀/브리핑 건너뛰기 버튼
+- 영문 전용 원작 비트맵 글꼴을 대신해 한글 문구를 시스템 글꼴로 그리는 보조 렌더링
 
-### Dev Log
+**원작 게임 데이터 `descent.hog`와 `descent.pig`는 수정하지 않았습니다.** 따라서 그 안의 타이틀 이미지, 조종석에 그려진 글자, 브리핑 본문, 레벨 이름, 원작 크레딧 등은 영어로 남습니다. 전체 원작 에셋 번역판이 아닌 웹 포팅 코드 UI의 한국어화입니다. 원본 README는 [README.en.md](README.en.md)에 보존합니다.
 
-https://x.com/mrdoob/status/2022705222402085218
+## 권리와 라이선스 주의
 
-### Assets
+**코드의 MIT 라이선스는 원작 게임 데이터의 권리까지 허가하는 것이 아닙니다.** 원본 README는 포함된 `descent.hog`·`descent.pig`를 **Episode 1 셰어웨어 데이터**라고 설명합니다. 이 파일의 게임 그래픽·소리·레벨·텍스트 등의 권리는 Parallax Software, Interplay 등 원작 관련 권리자에게 있을 수 있으며, MIT 코드와 별도로 셰어웨어 배포 조건과 권리자의 허용 범위를 확인해야 합니다. 이 포크는 해당 데이터의 재사용·수정·상업 이용 권한을 보장하지 않습니다.
 
-Shareware `descent.hog` and `descent.pig` included (Episode 1).
-For the full game, replace with your own files from a registered copy of Descent.
+정식판은 자신이 적법하게 보유한 Descent 사본의 파일을 사용해야 합니다. 정식판 데이터를 공개 저장소에 올리거나 공유하지 마세요.
 
-### License
+- 프로젝트 코드: [MIT LICENSE](LICENSE), 원작 저작권 고지 유지
+- `src/vendor/opl3`의 OPL3 에뮬레이터: **LGPL-2.1-or-later**, 해당 모듈의 고지·라이선스 유지
+- 원작: Parallax Software. Three.js 포팅: mrdoob 및 원본 README의 기여자
+- 비공식 팬 포크이며 원작사와 제휴 관계가 아닙니다.
 
-Project code: MIT.
+## 실행
 
-The source-visible OPL3 emulator in `src/vendor/opl3` is distributed under
-LGPL-2.1-or-later; its attribution and license are included with that module.
+설치나 빌드 없이 정적 HTTP 서버로 실행합니다. ES 모듈과 데이터 파일을 읽으므로 `file://`로 열지 마세요.
 
-### Credits
+```bash
+git clone https://github.com/sigco3111/three-descent.git
+cd three-descent
+python3 -m http.server 8000
+```
 
-- Original game by Parallax Software ([source](https://github.com/videogamepreservation/descent))
-- Three.js port by [@mrdoob](https://github.com/mrdoob) with [@claude](https://github.com/claude)
+브라우저에서 `http://localhost:8000`을 엽니다. 최신 데스크톱 브라우저와 WebGL 지원 GPU를 권장합니다. Three.js 0.183.0은 jsDelivr에서 가져오므로 인터넷 연결이 필요합니다. 모바일 터치 조작은 제공하지 않습니다.
+
+Pages는 `main` 브랜치 루트의 정적 파일을 제공합니다. 별도 게임 서버·패키지 설치·빌드는 필요하지 않습니다.
+
+## 시작하기
+
+1. 게임 데이터를 불러오고 원작 로고·타이틀을 표시합니다. 건너뛰기 버튼으로 넘어갈 수 있습니다.
+2. **새 게임**을 고르고 난이도를 선택합니다.
+3. 원작 브리핑을 확인하거나 건너뜁니다.
+4. 화면을 클릭해 마우스를 고정하고 비행합니다. 소리는 키 입력이나 클릭 후 시작됩니다.
+
+## 기본 조작
+
+| 동작 | 기본 입력 |
+|---|---|
+| 전진 / 후진 | W / S 또는 위 / 아래 방향키 |
+| 좌우 이동 | A / D 또는 좌우 방향키 |
+| 상승 / 하강 | Space / Shift |
+| 시점 조절 | 마우스 |
+| 기체 좌우 회전 | Q / E |
+| 주무기 / 미사일 | 왼쪽 / 오른쪽 마우스 버튼 |
+| 조명탄 | F |
+| 자동 지도 | Tab |
+| 후방 보기 | H |
+| 조종석 전환 | F3 |
+| 자동 전진 가속 / 감속 / 해제 | R / T / Backspace |
+| 일시정지 | Esc / P |
+
+메뉴는 방향키와 Enter로 선택합니다. 일시정지 설정의 키 배치에서 지원하는 행동의 키를 바꿀 수 있습니다. 브라우저 단축키가 일부 키와 충돌할 수 있습니다.
+
+## 난이도·저장
+
+훈련병, 신병, 숙련자, 에이스, 극한의 다섯 난이도가 있습니다. 설정과 키 배치는 브라우저 `localStorage`에 저장됩니다. 게임 중 일시정지 메뉴에서 저장하고 불러올 수 있습니다. 저장 파일과 점수는 브라우저·사이트 주소에 따라 분리되므로 원작 사이트의 기록이 이 포크로 자동 이동하지 않습니다. 사이트 데이터를 지우면 로컬 저장이 없어질 수 있습니다.
+
+## 구조
+
+| 파일·경로 | 내용 |
+|---|---|
+| `index.html` | 진입점, importmap, 로딩 표시 |
+| `src/main.js` | 데이터 로딩과 시작 흐름 |
+| `src/menu.js`, `src/game.js` | 메인·일시정지·설정 메뉴와 게임 루프 |
+| `src/font.js`, `src/gamefont.js`, `src/ko.js` | 비트맵 글꼴과 한글 보조 렌더링·번역표 |
+| `src/gauges.js`, `src/hud.js` | 조종석·HUD·상태 메시지 |
+| `src/gameseq.js` | 레벨 진행, 저장, 결과 |
+| `descent.hog`, `descent.pig` | 원작 게임 데이터. 코드와 별도 권리 주의 |
+| `src/vendor/opl3` | FM 사운드 에뮬레이터, 별도 LGPL 고지 |
+
+## 알려진 한계
+
+- 원작 이미지·브리핑·조종석에 포함된 영문은 유지합니다.
+- 한글은 시스템 글꼴로 표시하여 원작 픽셀 글꼴과 모양이 다릅니다. 저해상도 메뉴에서는 작은 글자 가독성이 제한될 수 있습니다.
+- 공개 포팅 프로젝트이므로 원작의 모든 기능·기기 호환성을 보장하지 않습니다.
+- 저장·소리·마우스 고정은 브라우저 정책에 따라 달라집니다.
+
+원작 프로젝트의 개발 기록과 제작진 정보는 [README.en.md](README.en.md)에서 확인할 수 있습니다.
