@@ -867,8 +867,8 @@ function addSkipBriefingButton() {
 	btn.style.cssText = 'position:absolute;bottom:20px;right:20px;z-index:202;' +
 		'background:transparent;border:none;outline:none;padding:8px 16px;cursor:pointer;';
 
-	const dimLabel = create_briefing_label_canvas( 'Skip', BRIEFING_SKIP_DIM_FG_INDEX, BRIEFING_SKIP_DIM_BG_INDEX );
-	const brightLabel = create_briefing_label_canvas( 'Skip', BRIEFING_SKIP_BRIGHT_FG_INDEX, BRIEFING_SKIP_BRIGHT_BG_INDEX );
+	const dimLabel = create_briefing_label_canvas( '건너뛰기', BRIEFING_SKIP_DIM_FG_INDEX, BRIEFING_SKIP_DIM_BG_INDEX );
+	const brightLabel = create_briefing_label_canvas( '건너뛰기', BRIEFING_SKIP_BRIGHT_FG_INDEX, BRIEFING_SKIP_BRIGHT_BG_INDEX );
 
 	if ( dimLabel !== null && brightLabel !== null ) {
 
@@ -904,7 +904,7 @@ function addSkipBriefingButton() {
 
 	} else {
 
-		btn.textContent = 'Skip';
+		btn.textContent = '건너뛰기';
 		btn.style.color = 'rgba(255,255,255,0.6)';
 		btn.style.fontFamily = '"Courier New", monospace';
 		btn.style.fontSize = '14px';
